@@ -1,7 +1,7 @@
 /*
  * @Author: lanplustech_hy
  * @Date: 2022-02-28 23:26:45
- * @LastEditTime: 2022-03-16 23:56:34
+ * @LastEditTime: 2022-03-22 04:23:03
  * @LastEditors: Please set LastEditors
  * @Description: 通信平台文件，用于协议层注册,注册时会针对不同协议初始化数据缓冲
  * @FilePath: /catkin_ws/src/rospolicy/include/CommunPlatform.h
@@ -19,8 +19,9 @@
 #include <arpa/inet.h>
 #include <geometry_msgs/Twist.h>
 
+#include "Common.h"
 #include "Tcpwarpper.h"
-
+#include "RosMessage.h"
 
 class ThreadCommun
 {
@@ -47,6 +48,8 @@ class CommunPlatform:ThreadCommun
 {
 private:
     /* data */
+    ros::NodeHandle nh;
+    ros::Publisher turtle_vel_pub = nh.advertise<geometry_msgs::Twist>("/turtle1/cmd_vel", 10);
     
 public:
     TcpWarpper *m_tcpwarpper;
@@ -55,6 +58,7 @@ public:
     CommunPlatform();
     ~CommunPlatform();
     bool PublishTcpMsg(std::string);
+    std::string PublishTcpMsg(FsmState _fsmstate);
     bool PublishMqttMsg(std::pair<std::string, std::string>);
 
 private:

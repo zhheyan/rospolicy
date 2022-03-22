@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2022-03-01 17:36:29
- * @LastEditTime: 2022-03-16 02:22:37
+ * @LastEditTime: 2022-03-22 03:47:15
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /catkin_ws/src/rospolicy/src/Tcpwarpper.cpp
@@ -127,9 +127,10 @@ void TcpWarpper::send_task(){
     while (ros::ok())
     {
         l_SendTcpMsg = _TcpSendBuf.WaitPop();
+
         if(!clientset.empty()){
             for(it = clientset.begin(); it!=clientset.end(); ++it){
-                memcpy(l_tmpSendTcpMsg, (*l_SendTcpMsg).c_str(), sizeof((*l_SendTcpMsg).c_str()));
+                memcpy(l_tmpSendTcpMsg, (*l_SendTcpMsg).c_str(), strlen((*l_SendTcpMsg).c_str()));
                 // l_tmp = const_cast<char *>((*l_SendTcpMsg).c_str());
                 ret = send(*it, l_tmpSendTcpMsg, strlen(l_tmpSendTcpMsg), 0);
             }

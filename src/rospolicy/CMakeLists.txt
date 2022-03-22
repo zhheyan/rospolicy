@@ -143,7 +143,7 @@ add_executable(${PROJECT_NAME} src/Common.cpp
                                src/rospolicy.cpp
                                src/Tcpwarpper.cpp
                                src/Mqttwarpper.cpp
-                               src/Message.cpp
+                               src/RosMessage.cpp
                                src/CommunPlatform.cpp
                                src/RosFsm.cpp)
 

@@ -4,7 +4,7 @@
  * @Last Modified by:   lanplustech_hy 
  * @Last Modified time: 2022-03-08 00:50:52 
  */
-#include "Tcpwarpper.h"
+
 #include "CommunPlatform.h"
 
 
@@ -46,7 +46,18 @@ bool CommunPlatform::InitProtol(){
     
 }
 bool CommunPlatform::PublishTcpMsg(std::string msg){
+    TcpControl
     m_tcpwarpper->_TcpSendBuf.push(msg);
+    return true;
+}
+std::string CommunPlatform::PublishTcpMsg(FsmState _fsmstate){
+    TcpMessage l_Tcpmsg;
+    std::string l_TcpSend;
+    if((_fsmstate == ControlAcccept)|(_fsmstate == ControlBanned)){
+        l_TcpSend = l_Tcpmsg.TcpControl(_fsmstate);
+    }
+    
+    m_tcpwarpper->_TcpSendBuf.push(l_TcpSend);
     return true;
 }
 
@@ -58,12 +69,11 @@ void CommunPlatform::parseTcp_task(){
     std::shared_ptr<std::string> l_TcpRecvmsg;
     std::vector<std::string> l_Msgvector;
     int l_ret;
-    ros::NodeHandle nh;
-    ros::Publisher turtle_vel_pub = nh.advertise<geometry_msgs::Twist>("/turtle1/cmd_vel", 10);
+
+            
     while (true)
     {
 
-        std::cout << "CommunPlatform" << std::endl;
         l_TcpRecvmsg = m_tcpwarpper->_TcpRecvBuf.WaitPop();
         std::cout << "CommunPlatform  " <<*l_TcpRecvmsg << std::endl;
 
@@ -73,6 +83,7 @@ void CommunPlatform::parseTcp_task(){
             SplitString(*l_TcpRecvmsg, l_Msgvector, "/");
             
             if("api" == l_Msgvector[1]){
+ 
                 if("joy_control" == l_Msgvector[2]){
                     std::string l_anglev, l_linev;
                     if("angular_velocity"==l_Msgvector[3].substr(0, l_Msgvector[3].find("="))){
@@ -87,6 +98,7 @@ void CommunPlatform::parseTcp_task(){
                         vel_msgs.linear.x = stod(l_linev);
                         vel_msgs.angular.z = stod(l_anglev);
                         turtle_vel_pub.publish(vel_msgs);
+                        continue;
                     }
                 }
                 
@@ -94,7 +106,8 @@ void CommunPlatform::parseTcp_task(){
             
         }
         if(l_ret < 0 | l_ret > 1024){
-            PublishTcpMsg("ERROR");
+            
+            PublishTcpMsg("");
             continue;
         }
     }
