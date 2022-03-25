@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2022-03-13 19:36:59
- * @LastEditTime: 2022-03-22 03:53:16
+ * @LastEditTime: 2022-03-23 20:24:09
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /catkin_ws/src/rospolicy/include/common.h
@@ -108,19 +108,25 @@ enum RoboState
     CHOUT_DOCK_SUCCESS,          // leave pile success    
 
     ESTOP_OPEN = 30,            // estop open 
-    ESTOP_LOSE
+    ESTOP_CLOSE,
+
+    INTERFACE_OK                // 接口调用成功
 };
 
 enum FsmState{
-    ControlBanned = 100,        // Banned control
+    ControlAck = 100,           // Ack Control
+    ControlBanned,              // Banned control
     ControlAcccept,             // Allow control
+    NaviAck,                    // Ack Navi
     NaviBanned,                 // Banned Navid
     NaviAccept,                 // Allow Navi
+    DockAck,                    // Ack Dock
     DockBanned,                 // Banned Docking
     DockAccept,                 // Allow Docking
     UnKnowMsg,                  // Msg format error
     UnKnowType                  // Msg Type Error
 };
+
 
 
 #endif

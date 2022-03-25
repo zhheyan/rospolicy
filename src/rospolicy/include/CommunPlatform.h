@@ -1,7 +1,7 @@
 /*
  * @Author: lanplustech_hy
  * @Date: 2022-02-28 23:26:45
- * @LastEditTime: 2022-03-22 04:23:03
+ * @LastEditTime: 2022-03-23 04:18:34
  * @LastEditors: Please set LastEditors
  * @Description: 通信平台文件，用于协议层注册,注册时会针对不同协议初始化数据缓冲
  * @FilePath: /catkin_ws/src/rospolicy/include/CommunPlatform.h
@@ -21,8 +21,8 @@
 
 #include "Common.h"
 #include "Tcpwarpper.h"
-#include "RosMessage.h"
-
+#include "Message.h"
+#include "RosMiddleWare.h"
 class ThreadCommun
 {
     pthread_t parseid;
@@ -53,6 +53,7 @@ private:
     
 public:
     TcpWarpper *m_tcpwarpper;
+    RosMiddleWare *m_Middleware;
     //MqttWarpper * m_mqttwarpper;
     
     CommunPlatform();

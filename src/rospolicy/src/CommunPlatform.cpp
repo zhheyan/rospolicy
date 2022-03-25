@@ -10,12 +10,15 @@
 
 CommunPlatform::CommunPlatform(){
     ROS_INFO_STREAM("Init Communcation OK");
+    m_Middleware = new RosMiddleWare();
     InitProtol();
     ParseTcpThread();
 }
 
 
 CommunPlatform::~CommunPlatform(){
+    delete m_Middleware;
+    delete m_tcpwarpper;
     ROS_INFO_STREAM("End Communcation OK");
 }
 
@@ -46,19 +49,12 @@ bool CommunPlatform::InitProtol(){
     
 }
 bool CommunPlatform::PublishTcpMsg(std::string msg){
-    TcpControl
+    
     m_tcpwarpper->_TcpSendBuf.push(msg);
     return true;
 }
 std::string CommunPlatform::PublishTcpMsg(FsmState _fsmstate){
-    TcpMessage l_Tcpmsg;
-    std::string l_TcpSend;
-    if((_fsmstate == ControlAcccept)|(_fsmstate == ControlBanned)){
-        l_TcpSend = l_Tcpmsg.TcpControl(_fsmstate);
-    }
-    
-    m_tcpwarpper->_TcpSendBuf.push(l_TcpSend);
-    return true;
+    return "aaa";
 }
 
 bool CommunPlatform::PublishMqttMsg(std::pair<std::string, std::string>){
@@ -81,7 +77,12 @@ void CommunPlatform::parseTcp_task(){
         l_ret = (*l_TcpRecvmsg).find("/api"); //check tcp msg
         if(0 == l_ret){  //
             SplitString(*l_TcpRecvmsg, l_Msgvector, "/");
-            
+            //检查Fsm状态
+            RoboState l_RoboState = m_Middleware->GetFsmState(ControlAck);
+            if(l_RoboState == 0){  // 机器人当前状态为可控制
+
+                
+            }
             if("api" == l_Msgvector[1]){
  
                 if("joy_control" == l_Msgvector[2]){

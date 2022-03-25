@@ -1,7 +1,7 @@
 /*
  * @Author: lanplustech_hy
  * @Date: 2022-03-01 17:36:38
- * @LastEditTime: 2022-03-22 02:33:55
+ * @LastEditTime: 2022-03-23 04:07:22
  * @LastEditors: Please set LastEditors
  * @Description: 通信层tcp协议
  * @FilePath: /catkin_ws/src/rospolicy/include/TcpWarpper.h
@@ -32,7 +32,7 @@
 #include <chrono>
 
 #include "Common.h"
-#include "RosMessage.h"
+#include "Message.h"
 
 #define MAXCLiNUM 12
 #define MAX_BUF 4096
