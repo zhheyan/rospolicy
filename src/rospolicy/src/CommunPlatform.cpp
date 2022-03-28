@@ -78,29 +78,30 @@ void CommunPlatform::parseTcp_task(){
         if(0 == l_ret){  //
             SplitString(*l_TcpRecvmsg, l_Msgvector, "/");
             //检查Fsm状态
-            RoboState l_RoboState = m_Middleware->GetFsmState(ControlAck);
-            if(l_RoboState == 0){  // 机器人当前状态为可控制
-
-                
-            }
+            
             if("api" == l_Msgvector[1]){
  
                 if("joy_control" == l_Msgvector[2]){
-                    std::string l_anglev, l_linev;
-                    if("angular_velocity"==l_Msgvector[3].substr(0, l_Msgvector[3].find("="))){
-                        l_anglev = l_Msgvector[3].substr(l_Msgvector[3].find("=")+1, l_Msgvector[3].size());
-                        l_linev = l_Msgvector[4].substr(l_Msgvector[4].find("=")+1, l_Msgvector[4].size());
-                        ROS_INFO_STREAM(" << td::endl;");
-                        std::cout << l_anglev << std::endl;
-                        std::cout << l_linev << std::endl;
+                    RoboState l_RoboState = m_Middleware->GetFsmState(ControlAck);
+                    if(l_RoboState == INTERFACE_OK){  // 机器人当前状态为可控制
 
+                        std::string l_anglev, l_linev;
+                        if("angular_velocity"==l_Msgvector[3].substr(0, l_Msgvector[3].find("="))){
+                            l_anglev = l_Msgvector[3].substr(l_Msgvector[3].find("=")+1, l_Msgvector[3].size());
+                            l_linev = l_Msgvector[4].substr(l_Msgvector[4].find("=")+1, l_Msgvector[4].size());
+                            
+                            // ROS_INFO_STREAM(" << td::endl;");
+                            // std::cout << l_anglev << std::endl;
+                            // std::cout << l_linev << std::endl;
 
-                        geometry_msgs::Twist vel_msgs;
-                        vel_msgs.linear.x = stod(l_linev);
-                        vel_msgs.angular.z = stod(l_anglev);
-                        turtle_vel_pub.publish(vel_msgs);
-                        continue;
+                            // geometry_msgs::Twist vel_msgs;
+                            // vel_msgs.linear.x = stod(l_linev);
+                            // vel_msgs.angular.z = stod(l_anglev);
+                            // turtle_vel_pub.publish(vel_msgs);
+                            // continue;
+                        }
                     }
+                    
                 }
                 
             }

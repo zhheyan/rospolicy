@@ -1,7 +1,7 @@
 /*
  * @Author: lanplustech_hy
  * @Date: 2022-02-28 23:26:45
- * @LastEditTime: 2022-03-23 04:18:34
+ * @LastEditTime: 2022-03-25 03:08:35
  * @LastEditors: Please set LastEditors
  * @Description: 通信平台文件，用于协议层注册,注册时会针对不同协议初始化数据缓冲
  * @FilePath: /catkin_ws/src/rospolicy/include/CommunPlatform.h
@@ -49,7 +49,7 @@ class CommunPlatform:ThreadCommun
 private:
     /* data */
     ros::NodeHandle nh;
-    ros::Publisher turtle_vel_pub = nh.advertise<geometry_msgs::Twist>("/turtle1/cmd_vel", 10);
+
     
 public:
     TcpWarpper *m_tcpwarpper;
