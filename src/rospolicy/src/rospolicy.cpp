@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2022-02-28 23:34:10
- * @LastEditTime: 2022-03-29 01:41:29
+ * @LastEditTime: 2022-03-29 07:10:17
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /catkin_ws/src/rospolicy/src/rospolicy.cpp
@@ -27,10 +27,10 @@ int main(int argc, char **argv){
     
     GetTargetParam(l_TarName, l_pose);
 
-    CommunPlatform RosCommun; //init communplatformdnn
-    //aaa.PublishTcpMsg("@@@@@@@@@@2");
-    //aaa.publishTcp("AAAAAAAAAAaa");
+    //CommunPlatform RosCommun; //init communplatformdnn
 
+
+    
     ros::spin();
     return 0;
 }
