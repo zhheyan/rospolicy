@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2022-03-28 22:45:58
- * @LastEditTime: 2022-03-29 07:37:00
+ * @LastEditTime: 2022-03-29 08:06:32
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /catkin_ws/src/rospolicy/include/RoboSqlite.cpp
@@ -15,6 +15,7 @@
 
 
 #include <ros/ros.h>
+#include <stdlib.h>
 #include "sqlite3.h"
 #include "geometry_msgs/PoseStamped.h"
 #include "Common.h"
@@ -33,9 +34,9 @@ int callback(void *data,int args_num,char **argv,char **argc){
     std::cout<< "callback" << std::endl;
     for (int i = 0; i < args_num; i++)
     {
-        if("PositionX" == argc[i]) l_ret->second.position.x = argv[i];
-        if("PositionY" == argc[i]) l_ret->second.position.y = argv[i];
-        if("PositionZ" == argc[i]) l_ret->second.position.z = argv[i];
+        if("PositionX" == argc[i]) l_ret->second.position.x = atof(argv[i]);
+        if("PositionY" == argc[i]) l_ret->second.position.y = atof(argv[i]);
+        if("PositionZ" == argc[i]) l_ret->second.position.z = atof(argv[i]);
 
         std::cout << argv[i] << " " << argc[i]<< std::endl;
     }
