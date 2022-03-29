@@ -133,7 +133,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-set(lib_DIR /usr/lib/x84_64-linux-gnu)
+set(lib_DIR /usr/lib/x84_64-linux-gnu /usr/bin)
 
 link_directories(${lib_DIR})
 
@@ -161,6 +161,7 @@ add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EX
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
   libjsoncpp.a
+  sqlite3
 )
 
 

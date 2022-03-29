@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2022-03-21 02:57:40
- * @LastEditTime: 2022-03-23 20:39:25
+ * @LastEditTime: 2022-03-27 19:58:34
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /catkin_ws/src/rospolicy/include/Message.h
@@ -15,23 +15,11 @@
 #include <jsoncpp/json/json.h>
 #include "RosFsm.h"
 
+std::string TcpNavi(RoboState stat);
+std::string TcpControl(RoboState stat);
+std::string TcpDock(RoboState stat);
+std::string TcpError(RoboState stat);
 
-class TcpMessage
-{
-private:
-    Json::Value _TcpNaviMsg;
-    Json::Value _TcpControlMsg;
-    Json::Value _TcpDockMsg;
-    Json::Value _TcpErrorMsg;
-    
-    Json::FastWriter _writer;
-    /* data */
-public:
-    std::string TcpNavi();
-    std::string TcpControl();
-    std::string TcpDock();
-    std::string TcpError();
-};
 
 
 #endif

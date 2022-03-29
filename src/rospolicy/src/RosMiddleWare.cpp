@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2022-03-15 19:20:30
- * @LastEditTime: 2022-03-25 03:16:18
+ * @LastEditTime: 2022-03-28 00:55:13
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /catkin_ws/src/rospolicy/src/RosMiddleWare.cpp
@@ -29,7 +29,7 @@ RosMiddleWare::~RosMiddleWare()
  * @return {*}
  */
     
-RoboState RosMiddleWare::GetFsmState(FsmState l_AckState){
+RoboState RosMiddleWare::GetFsmState(RoboState l_AckState){
     // 仅当导航空闲、急停关闭、回充空闲情况下，才可执行手动控制
     if(ControlAck == l_AckState){   // 控制请求
         if(ESTOP_OPEN == EStopState){ // 急停打开状态 返回
@@ -77,7 +77,18 @@ RoboState RosMiddleWare::GetFsmState(FsmState l_AckState){
     
 
 }
-bool RosMiddleWare::PublishControlCmd(geometry_msgs::Twist l_Control_cmd){
+bool RosMiddleWare::PublishControlCmd(std::string l_anglev, std::string l_linev){
     
+    geometry_msgs::Twist vel_msgs;
+    vel_msgs.linear.x = stod(l_linev);
+    vel_msgs.angular.z = stod(l_anglev);
+    Control_vel_pub.publish(vel_msgs);
+}
+
+bool RosMiddleWare::PublishNaviCmd(std::string l_TargetName){   //按导航点名称发布导航任务
     
+}
+
+bool RosMiddleWare::PublishNaviCmd(std::string l_x, std::string l_y, std::string l_angle){
+
 }

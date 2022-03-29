@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2022-03-13 19:36:59
- * @LastEditTime: 2022-03-23 20:24:09
+ * @LastEditTime: 2022-03-29 00:35:48
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /catkin_ws/src/rospolicy/include/common.h
@@ -105,15 +105,19 @@ enum RoboState
     
     CHOUT_DOCK_START = 20,      // start leave pile 
     CHOUT_DOCK_FAIL,            // leave pile fail
-    CHOUT_DOCK_SUCCESS,          // leave pile success    
+    CHOUT_DOCK_SUCCESS,         // leave pile success    
 
     ESTOP_OPEN = 30,            // estop open 
     ESTOP_CLOSE,
 
-    INTERFACE_OK                // 接口调用成功
-};
+    INTERFACE_OK = 50,          // 接口调用成功
+    UNKNOWMSG,                  // Msg format error
+    UNKNOWTYPE,                 // Msg Type Error
+    UNKNOWTARGET,               // 数据库未查询到点位id
+    INSERTOK,                   // 新增数据库点位信息ok
+    REPLACEOK,                  // 新增数据库点位信息，已有同名点位，进行替换
 
-enum FsmState{
+
     ControlAck = 100,           // Ack Control
     ControlBanned,              // Banned control
     ControlAcccept,             // Allow control
@@ -125,7 +129,23 @@ enum FsmState{
     DockAccept,                 // Allow Docking
     UnKnowMsg,                  // Msg format error
     UnKnowType                  // Msg Type Error
+
+    
 };
+
+// enum FsmState{
+//     // ControlAck = 100,           // Ack Control
+//     // ControlBanned,              // Banned control
+//     // ControlAcccept,             // Allow control
+//     // NaviAck,                    // Ack Navi
+//     // NaviBanned,                 // Banned Navid
+//     // NaviAccept,                 // Allow Navi
+//     // DockAck,                    // Ack Dock
+//     // DockBanned,                 // Banned Docking
+//     // DockAccept,                 // Allow Docking
+//     // UnKnowMsg,                  // Msg format error
+//     // UnKnowType                  // Msg Type Error
+// };
 
 
 

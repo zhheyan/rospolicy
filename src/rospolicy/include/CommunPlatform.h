@@ -1,7 +1,7 @@
 /*
  * @Author: lanplustech_hy
  * @Date: 2022-02-28 23:26:45
- * @LastEditTime: 2022-03-25 03:08:35
+ * @LastEditTime: 2022-03-27 20:51:02
  * @LastEditors: Please set LastEditors
  * @Description: 通信平台文件，用于协议层注册,注册时会针对不同协议初始化数据缓冲
  * @FilePath: /catkin_ws/src/rospolicy/include/CommunPlatform.h
@@ -59,7 +59,6 @@ public:
     CommunPlatform();
     ~CommunPlatform();
     bool PublishTcpMsg(std::string);
-    std::string PublishTcpMsg(FsmState _fsmstate);
     bool PublishMqttMsg(std::pair<std::string, std::string>);
 
 private:
