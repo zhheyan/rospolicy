@@ -99,7 +99,7 @@ void CommunPlatform::parseTcp_task(){
 
                         if("marker" == l_Msgvector[3]){ //查数据库并下发导航任务
                             std::string l_TargetName = l_Msgvector[3].substr(l_Msgvector[3].find("=") + 1, l_Msgvector[3].size());
-                               
+                            
                         }
                         std::string l_anglev, l_linev;
                         if("angular_velocity"==l_Msgvector[3].substr(0, l_Msgvector[3].find("="))){

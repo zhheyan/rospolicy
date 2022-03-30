@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2022-03-13 19:36:59
- * @LastEditTime: 2022-03-29 00:35:48
+ * @LastEditTime: 2022-03-30 02:32:20
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /catkin_ws/src/rospolicy/include/common.h
@@ -114,8 +114,11 @@ enum RoboState
     UNKNOWMSG,                  // Msg format error
     UNKNOWTYPE,                 // Msg Type Error
     UNKNOWTARGET,               // 数据库未查询到点位id
-    INSERTOK,                   // 新增数据库点位信息ok
-    REPLACEOK,                  // 新增数据库点位信息，已有同名点位，进行替换
+    SEARCHOK,                   // 查询数据库点位信息ok
+    INSERTOK,                   // 新增数据库点位信息，无同名点位
+    UPDATEOK,                   // 新增数据库点位信息，已有同名点位，进行替换
+    SQLERROR,                   // sq语句异常
+    DELETEOK,                   // 删除导航点信息ok
 
 
     ControlAck = 100,           // Ack Control
