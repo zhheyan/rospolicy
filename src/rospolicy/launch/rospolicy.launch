@@ -1,0 +1,6 @@
+<launch>
+<node pkg="rospolicy" type="rospolicy" name="rospolicy" output="screen">
+	<!--remap from="/cmd_vel" to="/lp_robot/cmd_vel" /-->
+</node>
+
+</launch>

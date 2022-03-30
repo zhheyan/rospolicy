@@ -1,0 +1,7 @@
+RosPolicy:
+ Navistat: true
+ Dockstat: true
+
+
+ CheckDockState: true
+ AutoRetryDock: true

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2022-03-13 19:36:59
- * @LastEditTime: 2022-03-30 02:32:20
+ * @LastEditTime: 2022-03-30 04:01:19
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /catkin_ws/src/rospolicy/include/common.h
@@ -120,16 +120,10 @@ enum RoboState
     SQLERROR,                   // sq语句异常
     DELETEOK,                   // 删除导航点信息ok
 
-
+    //请求类型
     ControlAck = 100,           // Ack Control
-    ControlBanned,              // Banned control
-    ControlAcccept,             // Allow control
     NaviAck,                    // Ack Navi
-    NaviBanned,                 // Banned Navid
-    NaviAccept,                 // Allow Navi
     DockAck,                    // Ack Dock
-    DockBanned,                 // Banned Docking
-    DockAccept,                 // Allow Docking
     UnKnowMsg,                  // Msg format error
     UnKnowType                  // Msg Type Error
 
